@@ -18,6 +18,6 @@ fi
 
 cp $1 $1.converted
 
-#convert all newlines to %2$c, all " to %3$c
-sed -i ':a;N;$!ba;s/\n/%2$c/g' $1.converted
-sed -i 's/"/%3$c/g' $1.converted
+sed -i 's/%/%%/g' $1.converted
+sed -i ':a;N;$!ba;s/\n/%1$c/g' $1.converted
+sed -i 's/"/%2$c/g' $1.converted

@@ -25,25 +25,25 @@ colleen_test: colleen
 	diff tmp_Colleen ${COLLEEN_SRC}
 
 colleen_clean:
-	rm -f ${COLLEEN_NAME} ${COLLEEN_TMP}
+	rm -f ${COLLEEN_NAME} ${COLLEEN_TMP} ${COLLEEN_SRC:.s=.o}
 
 
 #Grace
 GRACE_NAME=Grace
-GRACE_SRC=Grace.c
-GRACE_OUT=Grace_kid.c
+GRACE_SRC=Grace.s
+GRACE_OUT=Grace_kid.s
 
 grace: ${GRACE_NAME}
 
-${GRACE_NAME}: ${GRACE_SRC}
-	${COMPILER} ${COMPILER_FLAGS} -o ${GRACE_NAME} ${GRACE_SRC}
+${GRACE_NAME}: ${GRACE_SRC:.s=.o}
+	${LINKER} ${LINKER_FLAGS} -o ${GRACE_NAME} -lc ${GRACE_SRC:.s=.o}
 
 grace_test: grace
 	./${GRACE_NAME}
 	diff ${GRACE_SRC} ${GRACE_OUT}
 
 grace_clean:
-	rm -f ${GRACE_NAME} ${GRACE_OUT}
+	rm -f ${GRACE_NAME} ${GRACE_OUT} ${GRACE_SRC:.s=.o}
 
 
 #Sully
@@ -55,7 +55,7 @@ SULLY_LAST_SRC=Sully_0.c
 sully: ${SULLY_NAME}
 
 ${SULLY_NAME}: ${SULLY_SRC}
-	${COMPILER} ${COMPILER_FLAGS} -o ${SULLY_NAME} ${SULLY_SRC}
+	${LINKER} ${LINKER_FLAGS} -o ${SULLY_NAME} -lc ${SULLY_SRC}
 
 sully_test: sully
 	./${SULLY_NAME}

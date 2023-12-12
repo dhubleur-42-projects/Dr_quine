@@ -19,7 +19,6 @@ printf_caller:
 _start:
 	push rbp
 
-	mov rbp, rsp
     call printf_caller
 
 	pop rbp
@@ -27,4 +26,4 @@ _start:
     call exit ;exit(0)
 
 section .data
-	format db "extern printf%2$cextern exit%2$c%2$csection .text%2$cglobal _start%2$cglobal printf_caller%2$c%2$c; void printf_caller(void)%2$cprintf_caller:	%2$c	lea rdi, [format]%2$c	lea rsi, [format]%2$c	mov rdx, 10 ;newline%2$c	mov rcx, 34 ;double quote%2$c	call printf%2$c%2$c	xor rax, rax%2$c	ret%2$c%2$c_start:%2$c	push rbp%2$c%2$c	mov rbp, rsp%2$c    call printf_caller%2$c%2$c	pop rbp%2$c    xor rdi, rdi%2$c    call exit ;exit(0)%2$c%2$csection .data%2$c	format db %3$c%1$s%3$c, 0", 0
+	format db "extern printf%2$cextern exit%2$c%2$csection .text%2$cglobal _start%2$cglobal printf_caller%2$c%2$c; void printf_caller(void)%2$cprintf_caller:	%2$c	lea rdi, [format]%2$c	lea rsi, [format]%2$c	mov rdx, 10 ;newline%2$c	mov rcx, 34 ;double quote%2$c	call printf%2$c%2$c	xor rax, rax%2$c	ret%2$c%2$c_start:%2$c	push rbp%2$c%2$c    call printf_caller%2$c%2$c	pop rbp%2$c    xor rdi, rdi%2$c    call exit ;exit(0)%2$c%2$csection .data%2$c	format db %3$c%1$s%3$c, 0", 0
