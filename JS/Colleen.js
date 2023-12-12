@@ -7,6 +7,7 @@ function print_itself(){
 }
 
 (function main(){
+	// Really love this language
     console.log("/*\n\tThx JS .toString() method\n*/\n");
 	print_itself();
 	console.log("\n(" + main.toString() + ")()");
