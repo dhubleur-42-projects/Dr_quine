@@ -48,21 +48,21 @@ grace_clean:
 
 #Sully
 SULLY_NAME=Sully
-SULLY_SRC=Sully.c
+SULLY_SRC=Sully.s
 SULLY_OUT=Sully_*
-SULLY_LAST_SRC=Sully_0.c
+SULLY_LAST_SRC=Sully_0.s
 
 sully: ${SULLY_NAME}
 
-${SULLY_NAME}: ${SULLY_SRC}
-	${LINKER} ${LINKER_FLAGS} -o ${SULLY_NAME} -lc ${SULLY_SRC}
+${SULLY_NAME}: ${SULLY_SRC:.s=.o}
+	${LINKER} ${LINKER_FLAGS} -o ${SULLY_NAME} -lc ${SULLY_SRC:.s=.o}
 
 sully_test: sully
 	./${SULLY_NAME}
 	diff ${SULLY_SRC} ${SULLY_LAST_SRC} || true
 
 sully_clean:
-	rm -f ${SULLY_NAME} ${SULLY_OUT}
+	rm -f ${SULLY_NAME} ${SULLY_OUT} ${SULLY_SRC:.s=.o}
 
 
 #General
